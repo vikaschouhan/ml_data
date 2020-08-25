@@ -30,8 +30,12 @@ def read_registry():
         # endif
         tgt_path_t = os.path.join(out_path, os.path.basename(os.path.normpath(path_t)) + '.' + ftypes[indx_t])
         cmd_str    = "cat {}/* > {}".format(abs_path_t, tgt_path_t)
-        print('>> {}'.format(cmd_str))
-        subprocess.call(cmd_str, shell=True)
+        if ftypes[indx_t] in ['pkl']:
+            print('>> {}'.format(cmd_str))
+            subprocess.call(cmd_str, shell=True)
+        else:
+            print('>> Unsupported file type "{}" for path "{}" !!'.format(ftypes[indx_t], path_t))
+        # endif
     # endfor
 # enddef
 
